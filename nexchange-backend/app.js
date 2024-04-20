@@ -9,7 +9,7 @@ app.use(cors({
   origin: ["http://localhost:3000",],
   credentials: true
 }));
-
+app.use('/images',express.static('../nexchange-frontend/src/Assests'))
 app.use(express.json());
 app.use(cookieParser());
 app.use("/test", (req, res) => {

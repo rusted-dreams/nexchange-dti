@@ -84,7 +84,7 @@ const ProfileContent = ({ active }) => {
           <div className="flex justify-center w-full">
             <div className="relative">
               <img
-                src={`${user?.avatar?.url}`}
+                src="../../Assests/user.png"
                 className="w-[150px] h-[150px] rounded-full object-cover border-[3px] border-[#3ad132]"
                 alt=""
               />
@@ -267,7 +267,7 @@ const AllOrders = () => {
       row.push({
         id: item._id,
         itemsQty: item.cart.length,
-        total: "US$ " + item.totalPrice,
+        total: "₹ " + item.totalPrice,
         status: item.status,
       });
     });
@@ -355,7 +355,7 @@ const AllRefundOrders = () => {
       row.push({
         id: item._id,
         itemsQty: item.cart.length,
-        total: "US$ " + item.totalPrice,
+        total: "₹ " + item.totalPrice,
         status: item.status,
       });
     });
@@ -440,7 +440,7 @@ const TrackOrder = () => {
       row.push({
         id: item._id,
         itemsQty: item.cart.length,
-        total: "US$ " + item.totalPrice,
+        total: "₹ " + item.totalPrice,
         status: item.status,
       });
     });
