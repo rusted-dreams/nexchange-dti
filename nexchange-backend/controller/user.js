@@ -16,7 +16,11 @@ router.post("/create-user", async (req, res, next) => {
     const userEmail = await User.findOne({ email });
 
     if (userEmail) {
-      return next(new ErrorHandler("User already exists", 400));
+      return next(new ErrorHandler("User already registered!", 400));
+    }
+
+    if (!userEmail && !email.toLowerCase().endsWith('@bennett.edu.in')){
+      return next(new ErrorHandler("invalid bennett id!", 400));
     }
 
     // const myCloud = await cloudinary.v2.uploader.upload(avatar, {
@@ -78,7 +82,7 @@ router.post(
       let user = await User.findOne({ email });
 
       if (user) {
-        return next(new ErrorHandler("User already exists", 400));
+        return next(new ErrorHandler("User already registered", 400));
       }
       user = await User.create({
         name,
@@ -102,20 +106,20 @@ router.post(
       const { email, password } = req.body;
 
       if (!email || !password) {
-        return next(new ErrorHandler("Please provide the all fields!", 400));
+        return next(new ErrorHandler("iplease provide all fields!", 400));
       }
 
       const user = await User.findOne({ email }).select("+password");
 
       if (!user) {
-        return next(new ErrorHandler("User doesn't exists!", 400));
+        return next(new ErrorHandler("User doesn't exist!", 400));
       }
 
       const isPasswordValid = await user.comparePassword(password);
 
       if (!isPasswordValid) {
         return next(
-          new ErrorHandler("Please provide the correct information", 400)
+          new ErrorHandler("invalid credentials!", 400)
         );
       }
 
@@ -135,7 +139,7 @@ router.get(
       const user = await User.findById(req.user.id);
 
       if (!user) {
-        return next(new ErrorHandler("User doesn't exists", 400));
+        return next(new ErrorHandler("User doesn't exist", 400));
       }
 
       res.status(200).json({
@@ -187,7 +191,7 @@ router.put(
 
       if (!isPasswordValid) {
         return next(
-          new ErrorHandler("Please provide the correct information", 400)
+          new ErrorHandler("invalid credentials!", 400)
         );
       }
 
@@ -255,7 +259,7 @@ router.put(
       );
       if (sameTypeAddress) {
         return next(
-          new ErrorHandler(`${req.body.addressType} address already exists`)
+          new ErrorHandler(`${req.body.addressType} address already exist`)
         );
       }
 

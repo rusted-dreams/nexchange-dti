@@ -16,12 +16,15 @@ router.post("/create-shop", catchAsyncErrors(async (req, res, next) => {
     const { email } = req.body;
     const sellerEmail = await Shop.findOne({ email });
     if (sellerEmail) {
-      return next(new ErrorHandler("User already exists", 400));
+      return next(new ErrorHandler("User already exist!", 400));
     }
 
     // const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
     //   folder: "avatars",
     // });
+    if (!userEmail && !email.toLowerCase().endsWith('@bennett.edu.in')){
+      return next(new ErrorHandler("invalid bennett id!", 400));
+    }
 
 
     const seller = {
@@ -79,7 +82,7 @@ router.post(
       );
 
       if (!newSeller) {
-        return next(new ErrorHandler("Invalid token", 400));
+        return next(new ErrorHandler("token expired", 400));
       }
       const { name, email, password, avatar, zipCode, address, phoneNumber } =
         newSeller;
@@ -87,7 +90,7 @@ router.post(
       let seller = await Shop.findOne({ email });
 
       if (seller) {
-        return next(new ErrorHandler("User already exists", 400));
+        return next(new ErrorHandler("User already exist", 400));
       }
 
       seller = await Shop.create({
@@ -115,20 +118,20 @@ router.post(
       const { email, password } = req.body;
 
       if (!email || !password) {
-        return next(new ErrorHandler("Please provide the all fields!", 400));
+        return next(new ErrorHandler("invalid credentials!", 400));
       }
 
       const user = await Shop.findOne({ email }).select("+password");
 
       if (!user) {
-        return next(new ErrorHandler("User doesn't exists!", 400));
+        return next(new ErrorHandler("User dosen't exist", 400));
       }
 
       const isPasswordValid = await user.comparePassword(password);
 
       if (!isPasswordValid) {
         return next(
-          new ErrorHandler("Please provide the correct information", 400)
+          new ErrorHandler("invalid password!", 400)
         );
       }
 
