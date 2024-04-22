@@ -13,7 +13,7 @@ const sendShopToken = require("../utils/shopToken");
 // create shop
 router.post("/create-shop", catchAsyncErrors(async (req, res, next) => {
   try {
-    const { email } = req.body;
+    const { email,userEmail } = req.body;
     const sellerEmail = await Shop.findOne({ email });
     if (sellerEmail) {
       return next(new ErrorHandler("User already exist!", 400));
@@ -29,7 +29,7 @@ router.post("/create-shop", catchAsyncErrors(async (req, res, next) => {
 
     const seller = {
       name: req.body.name,
-      email: email,
+      email: req.body.email,
       password: req.body.password,
       // avatar: {
       //   public_id: myCloud.public_id,

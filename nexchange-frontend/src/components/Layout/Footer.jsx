@@ -5,6 +5,7 @@ import {
   AiFillYoutube,
   AiOutlineTwitter,
 } from "react-icons/ai";
+import logo from "../../Assests/logo.png";
 import { Link } from "react-router-dom";
 import {
   footercompanyLinks,
@@ -36,14 +37,14 @@ const Footer = () => {
       </div>
       <div className="grid grid-cols-1 sm:gird-cols-3 lg:grid-cols-4 gap-6 sm:px-8 px-5 py-16 sm:text-center">
         <ul className="px-5 text-center sm:text-start flex sm:block flex-col items-center">
-          <img
-            src="https://shopo.quomodothemes.website/assets/images/logo.svg"
+          <img height={100} width={200}
+            src={logo}
             alt=""
             style={{ filter: "brightness(0) invert(1)" }}
           />
           <br />
-          <p>The home and elements needeed to create beatiful products.</p>
-          <div className="flex items-center mt-[15px]">
+          <p>Find everything you need to elevate your campus experience with Nexchange.</p>
+          {/* <div className="flex items-center mt-[15px]">
             <AiFillFacebook size={25} className="cursor-pointer" />
             <AiOutlineTwitter
               size={25}
@@ -57,7 +58,7 @@ const Footer = () => {
               size={25}
               style={{ marginLeft: "15px", cursor: "pointer" }}
             />
-          </div>
+          </div> */}
         </ul>
 
         <ul className="text-center sm:text-start">
@@ -106,7 +107,7 @@ const Footer = () => {
         </ul>
       </div>
 
-      <div
+      {/* <div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10
          text-center pt-2 text-gray-400 text-sm pb-8"
       >
@@ -118,7 +119,7 @@ const Footer = () => {
             alt=""
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
