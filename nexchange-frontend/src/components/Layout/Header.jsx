@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
+import logo from "../../Assests/logo.png";
 import { categoriesData, productData } from "../../static/data";
 import {
   AiOutlineHeart,
@@ -54,12 +55,12 @@ const Header = ({ activeHeading }) => {
   return (
     <>
       <div className={`${styles.section}`}>
-        <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
+        <div className="hidden 800px:h-[50px] 800px:my-[10px] 800px:flex items-center justify-between">
           <div>
             <Link to="/">
-              <img
-                src="https://shopo.quomodothemes.website/assets/images/logo.svg"
-                alt=""
+              <img height={80} width={140}
+                src={logo}
+                alt="logo"
               />
             </Link>
           </div>
